@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* eslint-disable no-unused-vars */
+import './App.css';
+import { useState } from 'react';
+import Boton from './components/Boton';
+import Contador from './components/Contador';
+import logo from '/images/logo.png'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ numClics, setNumClics ] = useState(0);
+
+  const manejarClic = () => {
+    setNumClics(numClics + 1);
+  }
+
+  const reiniciarContador = () => {
+    setNumClics(0);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='App'>
+      <div className="freecodecamp-logo-contenedor">
+        <img src={logo} className='freecodecamp-logo' alt="logo" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="contenedor-principal">
+        <Contador 
+            numClics={numClics}
+        />
+        <Boton
+            texto='Clic'
+            botonClic={true}
+            manejarClic={manejarClic}
+        />
+        <Boton 
+            texto='Reiniciar'
+            botonClic={false}
+            manejarClic={reiniciarContador}
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
-export default App
+export default App;
